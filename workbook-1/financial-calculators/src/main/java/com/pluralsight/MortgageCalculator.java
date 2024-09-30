@@ -6,14 +6,21 @@ public class MortgageCalculator {
 //      if user didn't do conversion of interest rate
 //      double yearlyPercentage = interestRate / 100;
         double paymentsOverTime = 12;
-        double annualPercentage = interestRate / paymentsOverTime;
+        double annualPercentage = interestRate / 100 / paymentsOverTime;
         double a = 1 + (annualPercentage);
         double b = -1 * (loanTermLength * paymentsOverTime);
         double numerator = principal * (annualPercentage);
         double denominator = 1 - Math.pow(a, b);
 
-        //Monthly payment of loan
+        //Monthly payment of mortgage loan
         return numerator / denominator;
+    }
+
+    public static double getTotalInterest (double monthlyPayment, double principal, int loanTermLength) {
+        double totalPayments = monthlyPayment * (12 * loanTermLength);
+
+        //Total interest for mortgage loan
+        return totalPayments - principal;
     }
 
     public static void main(String[] args) {
@@ -23,7 +30,7 @@ public class MortgageCalculator {
         double loanPrincipal = inputSc.nextDouble();
         inputSc.nextLine();
 
-        System.out.print("Enter the interest rate of loan (as a decimal percentage i.e. 7.625 --> 0.07625): ");
+        System.out.print("Enter the interest rate of loan (as a decimal percentage i.e. 7.625): ");
         double interestRate = inputSc.nextDouble();
         inputSc.nextLine();
 
@@ -32,7 +39,10 @@ public class MortgageCalculator {
         inputSc.nextLine();
 
         double loanCalculation = getMortgagePayment(loanPrincipal, interestRate, loanTermLength);
-        System.out.println(loanCalculation);
+        double totalMortgageInterest = getTotalInterest(loanCalculation, loanPrincipal, loanTermLength);
+
+        System.out.printf("Your monthly loan payment is $%4.2f \n", loanCalculation);
+        System.out.printf("Your total interest on the mortgage is $%4.2f", totalMortgageInterest);
 
         inputSc.close();
     }

@@ -20,6 +20,7 @@ public class AddIntegers {
 
         int result = sumIntegers(x, y);
 
+//      System.out.printf("The result of " + x + " " + y + " equals:", result);
         System.out.printf("The result of " + x + " added with " + y + " equals: \n%d\n", result);
 
         inputSc.close();
