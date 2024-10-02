@@ -11,13 +11,27 @@ public class FinancialCalculatorApp {
 
         int calcSelection = inputSc.nextInt();
 
-        //Changing calculators based on user input
-        if (calcSelection == 1) {
+        //Changing calculators based on user input (old way)
+      /*  if (calcSelection == 1) {
             MortgageCalculator.main(args);
         } else if (calcSelection == 2) {
             FutureValueCalculator.main(args);
         } else if (calcSelection == 3){
             AnnuityCalculator.main(args);
+        }
+      */
+
+        //Changing calculators using switch (better format)
+        switch (calcSelection) {
+            case 1:
+                MortgageCalculator.main(args);
+                break;
+            case 2:
+                FutureValueCalculator.main(args);
+                break;
+            case 3:
+                AnnuityCalculator.main(args);
+                break;
         }
     }
 }
